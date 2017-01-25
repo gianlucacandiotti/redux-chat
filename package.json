@@ -1,9 +1,9 @@
 {
-  "name": "xreact",
+  "name": "redux-counter-example",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon -L ./bin/www",
     "predev": "node build/pre-dev.js",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
@@ -14,15 +14,23 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
+    "app-module-path": "^2.2.0",
     "body-parser": "~1.15.2",
+    "bulma": "^0.3.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "dotenv": "^4.0.0",
     "express": "~4.14.0",
     "fs-extra": "^1.0.0",
+    "immutable": "^3.8.1",
     "morgan": "~1.7.0",
+    "normalize.css": "^5.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
+    "redux-immutablejs": "^0.0.8",
+    "reselect": "^2.5.4",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
@@ -31,6 +39,7 @@
     "babel-eslint": "7.1.0",
     "babel-jest": "17.0.2",
     "babel-loader": "^6.0.1",
+    "babel-plugin-css-modules-transform": "^1.1.0",
     "babel-plugin-transform-runtime": "^6.0.0",
     "babel-preset-es2015": "^6.0.0",
     "babel-preset-react": "^6.16.0",
@@ -41,6 +50,7 @@
     "cross-env": "^3.1.3",
     "css-loader": "^0.25.0",
     "dustjs-linkedin": "^2.7.5",
+    "enzyme": "^2.7.0",
     "eslint": "3.8.1",
     "eslint-config-react-app": "^0.5.0",
     "eslint-friendly-formatter": "^2.0.7",
@@ -61,15 +71,19 @@
     "json-loader": "^0.5.4",
     "lolex": "^1.4.0",
     "node-sass": "^4.2.0",
+    "nodemon": "^1.11.0",
     "object-assign": "^4.1.1",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "postcss-loader": "^1.2.2",
     "promise": "^7.1.1",
+    "react-addons-test-utils": "^15.4.2",
+    "redux-logger": "^2.7.4",
     "replace": "^0.3.0",
     "sass-loader": "^4.1.1",
     "semver": "^5.3.0",
     "shelljs": "^0.7.4",
+    "sinon": "^1.17.7",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
@@ -98,6 +112,9 @@
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "modulePaths": [
+      "./src/js"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"

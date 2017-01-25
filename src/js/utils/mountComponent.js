@@ -1,7 +1,7 @@
 import 'react';
 import { render } from 'react-dom';
 
-export default function mountComponent(selector, component, props = null) {
+export default function mountComponent(selector, component) {
   // eslint-disable-next-line no-undef
   const mountPoint = document.getElementById(selector);
 

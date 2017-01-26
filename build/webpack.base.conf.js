@@ -28,6 +28,7 @@ module.exports = {
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/js/components'),
       'modules': path.resolve(__dirname, '../src/js/modules'),
+      'pages': path.resolve(__dirname, '../src/js/pages'),
       'utils': path.resolve(__dirname, '../src/js/utils')
     }
   },

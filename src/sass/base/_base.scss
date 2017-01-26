@@ -23,16 +23,6 @@ body {
   line-height: $body-line-height;
 }
 
-a {
-  color: $text-blue;
-  text-decoration: none;
-
-  &:hover,
-  &:active {
-    text-decoration: underline;
-  }
-}
-
 strong {
   font-weight: $font-weight-bold;
 }

@@ -5,6 +5,7 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import hoffman from 'hoffman';
+import history from 'connect-history-api-fallback';
 
 import routes from './routes';
 

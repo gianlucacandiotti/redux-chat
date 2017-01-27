@@ -8,6 +8,7 @@ class NavBar extends Component {
     navRight: PropTypes.arrayOf(PropTypes.shape({
       text: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
+      index: PropTypes.bool,
     }).isRequired),
   };
 
@@ -30,6 +31,8 @@ class NavBar extends Component {
       isNavOpen,
     } = this.state;
 
+    console.log(styles.logo);
+
     return (
       <nav className="nav has-shadow">
         <div className="container">
@@ -45,7 +48,7 @@ class NavBar extends Component {
           </span>
           <div className={`nav-right nav-menu${isNavOpen ? ' is-active' : ''}`}>
             {navRight.map((item, i) => (
-              <NavLink to={item.link} key={i} className="nav-item is-tab">{item.text}</NavLink>
+              <NavLink to={item.link} key={i} className="nav-item is-tab" onlyActiveOnIndex={!!item.index}>{item.text}</NavLink>
             ))}
           </div>
         </div>

@@ -1,24 +1,25 @@
+var fs = require('fs')
 var path = require('path')
-var config = require('../config')
 var utils = require('./utils')
-var projectRoot = path.resolve(__dirname, '../')
-
-var env = process.env.NODE_ENV
-// check env & config/index.js to decide whether to enable CSS source maps for the
-// various preprocessor loaders added to vue-loader at the end of this file
-var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
-var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
-var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
-  context: projectRoot + '/src',
   entry: {
-    app: './js/index.js'
+    app: path.resolve(__dirname, '../bin/www')
   },
   output: {
-    path: config.build.assetsRoot,
-    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-    filename: '[name].js'
+    path: path.resolve(__dirname, '../bin'),
+    filename: 'www.build.js'
+  },
+  target: 'node',
+  externals: fs.readdirSync(path.resolve(__dirname, '../node_modules')).concat([
+    'react-dom/server', 'react/addons',
+  ]).reduce(function (ext, mod) {
+    ext[mod] = 'commonjs ' + mod
+    return ext
+  }, {}),
+  node: {
+    __filename: true,
+    __dirname: true
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
@@ -28,6 +29,7 @@ module.exports = {
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/js/components'),
       'modules': path.resolve(__dirname, '../src/js/modules'),
+      'routers': path.resolve(__dirname, '../src/js/routers'),
       'pages': path.resolve(__dirname, '../src/js/pages'),
       'utils': path.resolve(__dirname, '../src/js/utils')
     }
@@ -36,22 +38,12 @@ module.exports = {
     fallback: [path.join(__dirname, '../node_modules')]
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint',
-        include: [
-          path.join(projectRoot, 'src')
-        ],
-        exclude: /node_modules/
-      }
-    ],
     loaders: [
       {
         test: /\.(js|jsx)$/,
         loader: 'babel',
         include: [
-          path.join(projectRoot, 'src')
+          path.resolve(__dirname, '..')
         ],
         exclude: /node_modules/,
         query: {
@@ -69,17 +61,23 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url',
         query: {
-          limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          emitFile: false
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url',
         query: {
-          limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          emitFile: false
         }
+      },
+      {
+        test: /\.scssm$/,
+        loader: 'css/locals?modules&importLoaders=1!postcss!sass',
+        include: [
+          path.resolve(__dirname, '..')
+        ],
+        exclude: /node_modules/
       }
     ]
   },
@@ -87,8 +85,5 @@ module.exports = {
     return [
       require('autoprefixer')
     ]
-  },
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
   }
 }

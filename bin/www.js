@@ -1,44 +1,10 @@
-#!/usr/bin/env node
-
-var path = require('path');
-var appModulePath = require('app-module-path');
-
-appModulePath.addPath(path.resolve(__dirname, '..'));
-appModulePath.addPath(path.resolve(__dirname, '../src/js'));
-
-var sass = require('node-sass');
-
-function processSass(data, filename) {
-  var result;
-
-  result = sass.renderSync({
-    data: data,
-    file: filename,
-  }).css;
-
-  return result.toString('utf8');
-};
-
-require('babel-register')({
-  presets: ['es2015', 'stage-2', 'react'],
-  plugins: [
-    [
-      'css-modules-transform', {
-        'preprocessCss': processSass,
-        'extensions': ['.css', '.scss', '.scssm'],
-      },
-    ],
-  ],
-  ignore: /(processCss\.js|node_modules)/,
-});
-
 require('dotenv').config()
 
 /**
  * Module dependencies.
  */
 var app = require('../app').default;
-var debug = require('debug')('xvue:server');
+var debug = require('debug')('redux-chat:server');
 var http = require('http');
 
 /**

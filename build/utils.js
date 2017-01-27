@@ -40,7 +40,7 @@ exports.cssLoaders = function (options) {
     less: generateLoaders(['css', 'less']),
     sass: generateLoaders(['css', 'sass?indentedSyntax']),
     scss: generateLoaders(['css', 'postcss', 'sass']),
-    scssm: generateLoaders(['css?modules&importLoaders=2', 'postcss', 'sass']),
+    scssm: generateLoaders(['css?modules&importLoaders=1', 'postcss', 'sass']),
     stylus: generateLoaders(['css', 'stylus']),
     styl: generateLoaders(['css', 'stylus'])
   }

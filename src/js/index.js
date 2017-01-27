@@ -4,4 +4,4 @@ import './bootstrap';
  * Import all page components
  */
 
-import './routers/Home/Home';
+import './routers/Home/mount';

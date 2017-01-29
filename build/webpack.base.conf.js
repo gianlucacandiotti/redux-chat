@@ -11,9 +11,8 @@ var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
-  context: projectRoot + '/src',
   entry: {
-    app: './js/index.js'
+    app: path.resolve(projectRoot, './src/js/index.js')
   },
   output: {
     path: config.build.assetsRoot,
@@ -22,18 +21,18 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.json'],
-    fallback: [path.join(__dirname, '../node_modules')],
+    fallback: [path.join(projectRoot, './node_modules')],
     alias: {
-      'sass': path.resolve(__dirname, '../src/sass'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/js/components'),
-      'modules': path.resolve(__dirname, '../src/js/modules'),
-      'pages': path.resolve(__dirname, '../src/js/pages'),
-      'utils': path.resolve(__dirname, '../src/js/utils')
+      'sass': path.resolve(projectRoot, './src/sass'),
+      'assets': path.resolve(projectRoot, './src/assets'),
+      'components': path.resolve(projectRoot, './src/js/components'),
+      'modules': path.resolve(projectRoot, './src/js/modules'),
+      'pages': path.resolve(projectRoot, './src/js/pages'),
+      'utils': path.resolve(projectRoot, './src/js/utils')
     }
   },
   resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
+    fallback: [path.join(projectRoot, './node_modules')]
   },
   module: {
     preLoaders: [

@@ -3,22 +3,22 @@ require('dotenv').config()
 /**
  * Module dependencies.
  */
-var app = require('../app').default;
-var debug = require('debug')('redux-chat:server');
-var http = require('http');
+import app from '../app';
+import debug from 'debug';
+import http from 'http';
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.EXPRESS_PORT || '3000');
+const port = normalizePort(process.env.EXPRESS_PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -85,5 +85,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  debug('redux:server')('Listening on ' + bind);
 }

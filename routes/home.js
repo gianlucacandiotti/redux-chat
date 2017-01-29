@@ -5,6 +5,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from 'routers/Home/routes';
 import pathsToRegex from '../utils/pathsToRegex';
+import Test from 'components/Test/Test';
 
 const paths = [
   '/',

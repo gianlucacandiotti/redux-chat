@@ -1,6 +1,7 @@
 var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
+var projectRoot = path.resolve(__dirname, '../')
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
@@ -46,7 +47,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
         : config.build.index,
-      template: 'index.html',
+      template: path.join(projectRoot, './src/index.html'),
       inject: true,
       /*minify: {
         removeComments: true,
@@ -67,7 +68,7 @@ var webpackConfig = merge(baseWebpackConfig, {
           module.resource &&
           /\.js$/.test(module.resource) &&
           module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
+            path.join(projectRoot, './node_modules')
           ) === 0
         )
       }

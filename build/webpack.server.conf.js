@@ -24,8 +24,7 @@ module.exports = {
     __dirname: true
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
-    fallback: [path.join(projectRoot, './node_modules')],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       'sass': path.resolve(projectRoot, './src/sass'),
       'assets': path.resolve(projectRoot, './src/assets'),
@@ -36,47 +35,49 @@ module.exports = {
       'utils': path.resolve(projectRoot, './src/js/utils')
     }
   },
-  resolveLoader: {
-    fallback: [path.join(projectRoot, './node_modules')]
-  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url',
+        loader: 'url-loader',
         query: {
           emitFile: false
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url',
+        loader: 'url-loader',
         query: {
           emitFile: false
         }
       },
       {
         test: /\.scssm$/,
-        loader: 'css/locals?module&localIdentName=[name]__[local]___[hash:base64:5]&importLoaders=1!postcss!sass',
-        include: [
-          path.resolve(__dirname, '..')
-        ],
-        exclude: /node_modules/
+        loader: [
+          {
+            loader: 'css-loader/locals',
+            query: {
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+              modules: true
+            }
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
       }
-    ]
-  },
-  postcss() {
-    return [
-      require('autoprefixer')
     ]
   },
   plugins: [
@@ -84,7 +85,6 @@ module.exports = {
       compress: {
         warnings: false
       }
-    }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
+    })
   ]
 }

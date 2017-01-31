@@ -11,14 +11,9 @@ var destination = path.resolve(__dirname, '../views/layouts/base.dust')
 
 cp(source, destination)
 
-source = path.resolve(__dirname, './dev-client-tmp.js')
-destination = path.resolve(__dirname, './dev-client.js')
-
-cp(source, destination)
-
 replace({
   regex: '%DEV_PATH%',
   replacement: devPath,
-  paths: ['views/layouts/base.dust', 'build/dev-client.js'],
+  paths: ['views/layouts/base.dust'],
   silent: true
 })

@@ -20,8 +20,7 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
-    fallback: [path.join(projectRoot, './node_modules')],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       'sass': path.resolve(projectRoot, './src/sass'),
       'assets': path.resolve(projectRoot, './src/assets'),
@@ -31,24 +30,25 @@ module.exports = {
       'utils': path.resolve(projectRoot, './src/js/utils')
     }
   },
-  resolveLoader: {
-    fallback: [path.join(projectRoot, './node_modules')]
-  },
   module: {
-    preLoaders: [
+    rules: [
       {
+        enforce: 'pre',
         test: /\.(js|jsx)$/,
-        loader: 'eslint',
+        use: [{
+          loader: 'eslint-loader',
+          options: {
+            formatter: require('eslint-friendly-formatter')
+          }
+        }],
         include: [
           path.join(projectRoot, 'src')
         ],
         exclude: /node_modules/
-      }
-    ],
-    loaders: [
+      },
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         include: [
           path.join(projectRoot, 'src')
         ],
@@ -62,11 +62,11 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url',
+        loader: 'url-loader',
         query: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
@@ -74,20 +74,12 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url',
+        loader: 'url-loader',
         query: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
     ]
-  },
-  postcss() {
-    return [
-      require('autoprefixer')
-    ]
-  },
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
   }
 }

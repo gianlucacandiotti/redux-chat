@@ -31,8 +31,6 @@ class NavBar extends Component {
       isNavOpen,
     } = this.state;
 
-    console.log(styles.logo);
-
     return (
       <nav className="nav has-shadow">
         <div className="container">

@@ -80,11 +80,9 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  ]
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 100,
+    poll: 1000
+  }
 }

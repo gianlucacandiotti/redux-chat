@@ -9,7 +9,7 @@ class NavBar extends Component {
       text: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
       index: PropTypes.bool,
-    }).isRequired),
+    }).isRequired).isRequired,
   };
 
   state = {
@@ -22,7 +22,7 @@ class NavBar extends Component {
     });
   };
 
-  render() {
+  renderNavRight = () => {
     const {
       navRight,
     } = this.props;
@@ -31,6 +31,20 @@ class NavBar extends Component {
       isNavOpen,
     } = this.state;
 
+    if (!navRight) {
+      return null
+    } else {
+      return (
+        <div className={`nav-right nav-menu${isNavOpen ? ' is-active' : ''}`}>
+          {navRight.map((item, i) => (
+            <NavLink to={item.link} key={i} className="nav-item is-tab" onlyActiveOnIndex={!!item.index}>{item.text}</NavLink>
+          ))}
+        </div>
+      )
+    }
+  };
+
+  render() {
     return (
       <nav className="nav has-shadow">
         <div className="container">
@@ -44,11 +58,7 @@ class NavBar extends Component {
             <span></span>
             <span></span>
           </span>
-          <div className={`nav-right nav-menu${isNavOpen ? ' is-active' : ''}`}>
-            {navRight.map((item, i) => (
-              <NavLink to={item.link} key={i} className="nav-item is-tab" onlyActiveOnIndex={!!item.index}>{item.text}</NavLink>
-            ))}
-          </div>
+          {this.renderNavRight()}
         </div>
       </nav>
     );

@@ -27,6 +27,7 @@ module.exports = {
       'components': path.resolve(projectRoot, './src/js/components'),
       'modules': path.resolve(projectRoot, './src/js/modules'),
       'pages': path.resolve(projectRoot, './src/js/pages'),
+      'routers': path.resolve(projectRoot, './src/js/routers'),
       'utils': path.resolve(projectRoot, './src/js/utils')
     }
   },

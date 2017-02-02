@@ -1,0 +1,26 @@
+@import "~sass/commons/index";
+
+.root {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.label {
+  margin-right: 10px;
+  width: 125px;
+  text-align: right;
+}
+
+.input {
+  border: 1px solid $gray-light;
+  border-radius: 3px;
+  max-width: 250px;
+  padding: 5px 10px;
+  width: 47.5%;
+}

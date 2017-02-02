@@ -30,8 +30,9 @@ module.exports = {
       'assets': path.resolve(projectRoot, './src/assets'),
       'components': path.resolve(projectRoot, './src/js/components'),
       'modules': path.resolve(projectRoot, './src/js/modules'),
-      'routers': path.resolve(projectRoot, './src/js/routers'),
       'pages': path.resolve(projectRoot, './src/js/pages'),
+      'routers': path.resolve(projectRoot, './src/js/routers'),
+      'factories': path.resolve(projectRoot, './src/js/factories'),
       'utils': path.resolve(projectRoot, './src/js/utils')
     }
   },

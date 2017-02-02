@@ -25,6 +25,7 @@
     "express": "~4.14.0",
     "fs-extra": "^1.0.0",
     "immutable": "^3.8.1",
+    "lodash": "^4.17.4",
     "morgan": "~1.7.0",
     "normalize.css": "^5.0.0",
     "react": "^15.4.2",
@@ -34,7 +35,8 @@
     "redux": "^3.6.0",
     "redux-immutablejs": "^0.0.8",
     "reselect": "^2.5.4",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "validator": "^6.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

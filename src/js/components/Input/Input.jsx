@@ -3,11 +3,13 @@ import styles from './Input.scssm';
 
 class Input extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    type: PropTypes.string,
-    value: PropTypes.string,
-    onInputChange: PropTypes.func,
+    data: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string,
+      type: PropTypes.string,
+      value: PropTypes.string,
+    }).isRequired,
+    setValue: PropTypes.func,
   };
 
   state = {
@@ -17,10 +19,10 @@ class Input extends Component {
   componentWillMount() {
     const {
       value,
-    } = this.props;
+    } = this.props.data;
 
     if (!value) {
-      return false;
+      return null;
     } else {
       this.setState({ value });
     }
@@ -29,35 +31,36 @@ class Input extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       value,
-    } = this.props;
+    } = this.props.data;
 
-    if (value !== nextProps.value) {
-      this.setState({ value: nextProps.value });
+    const nextValue = nextProps.data.value;
+
+    if (value !== nextValue) {
+      this.setState({ value: nextValue });
     }
   }
 
   onChange = (e) => {
     const {
-      onInputChange,
+      data,
+      setValue,
     } = this.props;
 
-    if (!onInputChange) {
+    if (!setValue) {
       this.setState({
         value: e.target.value,
       });
     } else {
-      const newState = {};
-      newState[this.props.name] = e.target.value;
-      onInputChange(newState)
+      setValue(data.name, e.target.value);
     }
   };
 
   render() {
     const {
       name,
-      label,
       type,
-    } = this.props;
+      label,
+    } = this.props.data;
 
     const {
       value,

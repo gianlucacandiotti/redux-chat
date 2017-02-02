@@ -37,8 +37,8 @@ class Login extends Component {
             onInputChange={this.onInputChange}
           />
           <Button className="button is-primary">
-              Login!
-            </Button>
+            Login!
+          </Button>
         </Panel>
       </div>
     )

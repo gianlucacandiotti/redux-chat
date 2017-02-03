@@ -9,33 +9,47 @@ class SignUp extends Component {
     form: Form({
       email: {
         name: 'email',
-        value: 'aaa',
         type: 'email',
         label: 'Email:',
+        required: true,
       },
       username: {
         name: 'username',
-        value: '',
         type: 'text',
         label: 'Username:',
+        required: true,
       },
       password: {
         name: 'password',
-        value: '',
         type: 'password',
         label: 'Password:',
+        required: true,
       },
       passwordConfirm: {
         name: 'passwordConfirm',
-        value: '',
         type: 'password',
         label: 'Confirm Password:',
+        required: true,
       },
     }),
   };
 
-  onInputChange = (newState) => {
-    this.setState(newState);
+  setValue = (key, value) => {
+    const {
+      form,
+    } = this.state;
+
+    this.setState({
+      form: form.updateValue(key, value),
+    });
+  };
+
+  validateInput = (key) => {
+    const {
+      form,
+    } = this.state;
+
+
   };
 
   isValid = () => (
@@ -52,22 +66,23 @@ class SignUp extends Component {
     return (
       <div>
         <Panel title="Sign Up">
-          <form onSubmit={this.onSubmit}>
+          <form>
             <Input
               data={form.email}
-              setValue={form.setValue.bind(form)}
+              onChangeHandler={this.setValue}
+              onBlurHandler={this.validateInput}
             />
             <Input
               data={form.username}
-              setValue={form.setValue.bind(form)}
+              onChangeHandler={this.setValue}
             />
             <Input
               data={form.password}
-              setValue={form.setValue}
+              onChangeHandler={this.setValue}
             />
             <Input
               data={form.passwordConfirm}
-              setValue={form.setValue}
+              onChangeHandler={this.setValue}
             />
             <Button className="button is-primary" disabled={!this.isValid()}>
               Sign Up!

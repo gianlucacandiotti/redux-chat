@@ -9,7 +9,7 @@ class Input extends Component {
       type: PropTypes.string,
       value: PropTypes.string,
     }).isRequired,
-    setValue: PropTypes.func,
+    onChangeHandler: PropTypes.func,
   };
 
   state = {
@@ -18,8 +18,10 @@ class Input extends Component {
 
   componentWillMount() {
     const {
-      value,
-    } = this.props.data;
+      data,
+    } = this.props;
+
+    const value = data.value;
 
     if (!value) {
       return null;
@@ -31,7 +33,7 @@ class Input extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       value,
-    } = this.props.data;
+    } = this.state;
 
     const nextValue = nextProps.data.value;
 
@@ -43,24 +45,22 @@ class Input extends Component {
   onChange = (e) => {
     const {
       data,
-      setValue,
+      onChangeHandler,
     } = this.props;
 
-    if (!setValue) {
+    if (!onChangeHandler) {
       this.setState({
         value: e.target.value,
       });
     } else {
-      setValue(data.name, e.target.value);
+      onChangeHandler(data.name, e.target.value);
     }
   };
 
   render() {
     const {
-      name,
-      type,
-      label,
-    } = this.props.data;
+      data
+    } = this.props;
 
     const {
       value,
@@ -68,14 +68,14 @@ class Input extends Component {
 
     return (
       <div className={styles.root}>
-        <label htmlFor={name} className={styles.label}>
-          {label}
+        <label htmlFor={data.name} className={styles.label}>
+          {data.label}
         </label>
         <input
-          type={type || 'text'}
-          id={name}
+          type={data.type || 'text'}
+          id={data.name}
           className={styles.input}
-          name={name}
+          name={data.name}
           value={value}
           onChange={this.onChange}
         />

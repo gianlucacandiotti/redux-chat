@@ -4,6 +4,7 @@ import axios from 'axios';
 import SignUpTest from  'pages/SignUpTest';
 import reducer from  'pages/SignUpTest/reducer';
 import prepComponent from  '../utils/prepComponent';
+import axios from  'axios';
 
 const router = express.Router();
 

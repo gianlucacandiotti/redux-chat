@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Home from 'pages/Home/Home';
-import About from 'pages/About/About';
-import Login from 'pages/Login/Login';
-import SignUp from 'pages/SignUp/SignUp';
+import Home from './index';
+import About from './pages/About';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 const routes = (
   <Route path="/" component={Home}>

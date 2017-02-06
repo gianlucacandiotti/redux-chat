@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import NavLink from 'components/NavLink/NavLink';
-import styles from './NavBar.scssm';
+import NavLink from 'components/NavLink';
+import styles from './styles.scssm';
 import logo from './assets/logo.svg';
 
 class NavBar extends Component {
@@ -54,9 +54,9 @@ class NavBar extends Component {
             </a>
           </div>
           <span className="nav-toggle" onClick={this.onNavToggleClick}>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
+            <span />
           </span>
           {this.renderNavRight()}
         </div>

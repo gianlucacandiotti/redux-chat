@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './Input.scssm';
+import styles from './styles.scssm';
 
 class Input extends Component {
   static propTypes = {

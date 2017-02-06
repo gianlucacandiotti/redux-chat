@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Panel.scssm';
+import styles from './styles.scssm';
 
 const Panel = ({ title, children }) => (
   <div className={styles.root}>

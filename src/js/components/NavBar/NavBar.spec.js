@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import NavLink from 'components/NavLink/NavLink';
-import NavBar from './NavBar';
+import NavBar from './index';
 
 describe('NavBar component', () => {
   it('shows the correct number of links', () => {

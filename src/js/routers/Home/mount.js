@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, browserHistory } from 'react-router';
-import mountComponent from 'utils/mountComponent';
+import mountReduxComponent from 'utils/mountReduxComponent';
 import routes from './routes';
+import reducer from './reducer';
 
-mountComponent('home', <Router routes={routes} history={browserHistory} />);
+mountReduxComponent('home', <Router routes={routes} history={browserHistory} />, reducer);

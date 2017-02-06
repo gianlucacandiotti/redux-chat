@@ -1,7 +1,13 @@
 import './bootstrap';
 
 /**
- * Import all page components
+ * Import all routers
  */
 
 import 'routers/Home/mount';
+
+/**
+ * Import all pages
+ */
+
+import 'pages/SignUpTest/mount';

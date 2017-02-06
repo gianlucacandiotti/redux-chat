@@ -30,7 +30,7 @@ router.get(pathsToRegex(paths), function(req, res, next) {
   });
 });
 
-module.exports = {
+export default {
   basePath: '/',
   router: router,
 };

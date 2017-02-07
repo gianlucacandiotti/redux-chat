@@ -2,11 +2,9 @@ import React from 'react';
 
 const Button = ({
   children,
-  className,
-  disabled,
-  onClick
+  ...buttonProps,
 }) => (
-  <button className={className} onClick={onClick} disabled={disabled}>
+  <button {...buttonProps}>
     {children}
   </button>
 );

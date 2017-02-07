@@ -1,6 +1,7 @@
 import express from  'express';
 const router = express.Router();
 import React from 'react';
+import axios from 'axios';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from 'routers/Home/routes';
@@ -27,6 +28,14 @@ router.get(pathsToRegex(paths), function(req, res, next) {
       html,
       preloadedState,
     });
+  });
+});
+
+router.post('/signup', (req, res, next) => {
+  console.log(req.body);
+
+  res.json({
+    message: 'Good Job!',
   });
 });
 

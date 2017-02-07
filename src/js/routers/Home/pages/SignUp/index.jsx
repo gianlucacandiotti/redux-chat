@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Panel from 'components/Panel/Panel';
-import SignUpFormTest from 'components/SignUpFormTest';
+import Panel from 'components/Panel';
+import SignUpForm from 'components/SignUpForm';
 
-class SignUpTest extends Component {
+class SignUp extends Component {
   handleSignUpSubmit = (values) => {
-    axios.post('/sign-up-test', values)
+    axios.post('/signup', values)
     .then(function (response) {
       console.log(response);
     })
@@ -19,11 +19,11 @@ class SignUpTest extends Component {
     return (
       <div>
         <Panel title="Sign Up">
-          <SignUpFormTest onSubmit={this.handleSignUpSubmit} />
+          <SignUpForm onSubmit={this.handleSignUpSubmit} />
         </Panel>
       </div>
-    );
+    )
   }
 }
 
-export default SignUpTest;
+export default SignUp;

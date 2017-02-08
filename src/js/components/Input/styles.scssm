@@ -1,9 +1,6 @@
 @import "~sass/commons/index";
 
 .root {
-  align-items: center;
-  display: flex;
-  justify-content: center;
   margin-bottom: 10px;
 
   &:last-child {
@@ -11,10 +8,16 @@
   }
 }
 
+.inputWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .label {
   margin-right: 10px;
-  width: 125px;
   text-align: right;
+  @include cols(5);
 }
 
 .input {
@@ -22,5 +25,15 @@
   border-radius: 3px;
   max-width: 250px;
   padding: 5px 10px;
-  width: 47.5%;
+  @include cols(5);
+}
+
+.error {
+  color: $red;
+  display: block;
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 5px;
+  text-align: left;
+  @include offset(5, $add: 20px);
 }

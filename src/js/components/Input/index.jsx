@@ -1,87 +1,26 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import styles from './styles.scssm';
 
-class Input extends Component {
-  static propTypes = {
-    data: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      label: PropTypes.string,
-      type: PropTypes.string,
-      value: PropTypes.string,
-    }).isRequired,
-    onChangeHandler: PropTypes.func,
-  };
+const Input = ({ input, meta, ...props }) => {
+  const inputStyles = props.styles || styles;
 
-  state = {
-    value: '',
-  };
-
-  componentWillMount() {
-    const {
-      data,
-    } = this.props;
-
-    const value = data.value;
-
-    if (!value) {
-      return null;
-    } else {
-      this.setState({ value });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      value,
-    } = this.state;
-
-    const nextValue = nextProps.data.value;
-
-    if (value !== nextValue) {
-      this.setState({ value: nextValue });
-    }
-  }
-
-  onChange = (e) => {
-    const {
-      data,
-      onChangeHandler,
-    } = this.props;
-
-    if (!onChangeHandler) {
-      this.setState({
-        value: e.target.value,
-      });
-    } else {
-      onChangeHandler(data.name, e.target.value);
-    }
-  };
-
-  render() {
-    const {
-      data
-    } = this.props;
-
-    const {
-      value,
-    } = this.state;
-
-    return (
-      <div className={styles.root}>
-        <label htmlFor={data.name} className={styles.label}>
-          {data.label}
+  return (
+    <div className={inputStyles.root}>
+      <div className={inputStyles.inputWrapper}>
+        <label htmlFor={input.name} className={inputStyles.label}>
+          {props.label}
         </label>
-        <input
-          type={data.type || 'text'}
-          id={data.name}
-          className={styles.input}
-          name={data.name}
-          value={value}
-          onChange={this.onChange}
-        />
+        <input {...input} type={props.type} className={inputStyles.input} />
       </div>
-    )
-  }
-}
+      {
+        meta.touched &&
+        meta.error &&
+        <span className={inputStyles.error}>
+          {meta.error}
+        </span>
+      }
+    </div>
+  );
+};
 
 export default Input

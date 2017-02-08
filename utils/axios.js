@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = '';
-axios.defaults.headers.common['Authorization'] = '';
-axios.defaults.headers.post['Content-Type'] = '';
+axios.defaults.baseURL = 'http://162.243.88.59/';
+
+export default axios;

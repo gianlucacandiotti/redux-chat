@@ -1,27 +1,20 @@
 import React from 'react';
-import { Field } from 'redux-form';
-import { reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form/immutable';
+import generateValidations from 'utils/generateValidations';
+import Input from 'components/Input';
 import Button from 'components/Button';
+
+validation
+
+
 
 export const SignUpForm = (props) => (
   <div>
     <form onSubmit={props.handleSubmit}>
-      <div>
-        <label htmlFor="email">Email</label>
-        <Field name="email" component="input" type="email" />
-      </div>
-      <div>
-        <label htmlFor="name">Name</label>
-        <Field name="name" component="input" type="text" />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <Field name="password" component="input" type="password" />
-      </div>
-      <div>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <Field name="confirmPassword" component="input" type="password" />
-      </div>
+      <Field name="email" component={Input} type="email" label="Email" />
+      <Field name="name" component={Input} type="text" label="Name" />
+      <Field name="password" component={Input} type="password" label="Password" />
+      <Field name="confirmPassword" component={Input} type="password" label="Confirm Password" />
       <Button className="button is-primary">
         Sign Up!
       </Button>
@@ -31,4 +24,5 @@ export const SignUpForm = (props) => (
 
 export default reduxForm({
   form: 'signup',
+  validate: generateValidations()
 })(SignUpForm);

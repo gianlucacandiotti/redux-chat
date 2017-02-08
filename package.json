@@ -37,8 +37,8 @@
     "redux-form": "^6.5.0",
     "redux-immutablejs": "^0.0.8",
     "reselect": "^2.5.4",
-    "serve-favicon": "~2.3.0",
-    "validator": "^6.2.1"
+    "sane-email-validation": "^1.1.0",
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

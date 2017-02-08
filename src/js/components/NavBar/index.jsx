@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import map from 'lodash/fp/map';
 import NavLink from 'components/NavLink';
 import styles from './styles.scssm';
 import logo from './assets/logo.svg';
+
+const keydMap = map.convert({ cap: false });
 
 class NavBar extends Component {
   static propTypes = {
@@ -36,9 +39,9 @@ class NavBar extends Component {
     } else {
       return (
         <div className={`nav-right nav-menu${isNavOpen ? ' is-active' : ''}`}>
-          {navRight.map((item, i) => (
+          {keydMap((item, i) => (
             <NavLink to={item.link} key={i} className="nav-item is-tab" onlyActiveOnIndex={!!item.index}>{item.text}</NavLink>
-          ))}
+          ))(navRight)}
         </div>
       )
     }

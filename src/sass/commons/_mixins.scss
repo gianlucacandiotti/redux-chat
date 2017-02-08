@@ -53,3 +53,27 @@
     @media (min-width: $lg-max) { @content; }
   }
 }
+
+@mixin cols($number, $add: null, $subtract: null) {
+  @if ($add) {
+    width: calc(#{percentage($number / 12)} + #{$add});
+  }
+  @else if ($subtract) {
+    width: calc(#{percentage($number / 12)} - #{$subtract});
+  }
+  @else {
+    width: percentage($number / 12);
+  }
+}
+
+@mixin offset($number, $add: null, $subtract: null) {
+  @if ($add) {
+    margin-left: calc(#{percentage($number / 12)} + #{$add});
+  }
+  @else if ($subtract) {
+    margin-left: calc(#{percentage($number / 12)} - #{$subtract});
+  }
+  @else {
+    margin-left: percentage($number / 12);
+  }
+}

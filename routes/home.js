@@ -1,13 +1,15 @@
 import express from  'express';
-const router = express.Router();
 import React from 'react';
-import axios from '../utils/axios';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from 'routers/Home/routes';
 import reducers from 'routers/Home/reducers';
+import axios from '../utils/axios';
 import pathsToRegex from '../utils/pathsToRegex';
 import prepComponent from  '../utils/prepComponent';
+import getToken from '../utils/getToken';
+
+const router = express.Router();
 
 const paths = [
   '/',
@@ -33,18 +35,9 @@ router.get(pathsToRegex(paths), function(req, res, next) {
 
 router.post('/signup', (req, res, next) => {
   console.log(req.body);
+  const body = req.body;
 
-  axios.post('/oauth/token', {
-    grant_type: 'client_credentials',
-    client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET,
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+  getToken();
 
   res.json({
     message: 'Good Job!',

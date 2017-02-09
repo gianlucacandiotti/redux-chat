@@ -5,7 +5,7 @@ import axios from '../utils/axios';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from 'routers/Home/routes';
-import reducer from 'routers/Home/reducer';
+import reducers from 'routers/Home/reducers';
 import pathsToRegex from '../utils/pathsToRegex';
 import prepComponent from  '../utils/prepComponent';
 
@@ -22,7 +22,7 @@ router.get(pathsToRegex(paths), function(req, res, next) {
     const {
       html,
       preloadedState,
-    } = prepComponent(<RouterContext {...props} />, reducer);
+    } = prepComponent(<RouterContext {...props} />, reducers);
 
     res.render('pages/home', {
       html,

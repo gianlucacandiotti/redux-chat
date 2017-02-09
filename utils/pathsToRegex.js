@@ -8,7 +8,7 @@ import map from 'lodash/fp/map';
  * @return {RegExp}      : Regular Expression to match all paths.
  */
 const pathsToRegex = (paths) => (
-  new RegExp(map(e => `(^\\${e}$)`).join('|')(paths))
+  new RegExp(map(e => `(^\\${e}$)`)(paths).join('|'))
 );
 
 export default pathsToRegex;

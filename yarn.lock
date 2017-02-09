@@ -5205,9 +5205,11 @@ redux-form@^6.5.0:
     lodash "^4.17.3"
     lodash-es "^4.17.3"
 
-redux-immutablejs@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/redux-immutablejs/-/redux-immutablejs-0.0.8.tgz#2c173dac1aaebfb20ec86e076b7e2ce65f487a41"
+redux-immutable@^3.0.11:
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/redux-immutable/-/redux-immutable-3.0.11.tgz#ba7b00361904f2034e7841741bd4a6be66eea1ac"
+  dependencies:
+    immutable "^3.8.1"
 
 redux-logger@^2.7.4:
   version "2.7.4"

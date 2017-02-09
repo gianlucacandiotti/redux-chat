@@ -21,6 +21,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
+    modules: [
+      path.join(projectRoot, './node_modules')
+    ],
     alias: {
       'sass': path.resolve(projectRoot, './src/sass'),
       'assets': path.resolve(projectRoot, './src/assets'),

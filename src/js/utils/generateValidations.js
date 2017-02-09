@@ -1,27 +1,51 @@
 import each from 'lodash/fp/each';
+import some from 'lodash/fp/some';
+import isEmail from 'sane-email-validation';
 
-const runValidation = (value, validation) => {
-  switch (validation) {
+const keydEach = each.convert({ cap: false });
+
+const runValidation = (value, rule) => {
+  console.log('value: ', value);
+  console.log('rule: ', rule);
+  console.log('isEmail: ', !isEmail(value));
+  switch (rule) {
     case 'required':
       if (!value) {
         return 'This field is required';
       }
+
+      break;
+    case 'email':
+      if (!isEmail(value)) {
+        return 'Please use a valid email';
+      }
+
+      break;
+    default:
+      return false;
   }
+
+  return false;
 };
 
-const generateValidations = (validations) => {
-  const errors = {};
-
+const generateValidations = (validationRules) => {
   return (values) => {
-    each((key) => {
-      each((validation) => {
-        const error = runValidation(values.get(key), validation);
+    const errors = {};
+
+    keydEach((rules, field) => {
+      some((rule) => {
+        const error = runValidation(values.get(field) || '', rule);
+        console.log(error);
 
         if (error) {
-          errors[key] = error;
+          errors[field] = error;
         }
-      })(key);
-    })(validations);
+        console.log(errors);
+        return error;
+      })(rules);
+    })((validationRules));
+
+    return errors;
   };
 };
 

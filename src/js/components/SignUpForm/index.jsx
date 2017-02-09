@@ -4,9 +4,12 @@ import generateValidations from 'utils/generateValidations';
 import Input from 'components/Input';
 import Button from 'components/Button';
 
-validation
-
-
+const validationRules = {
+  email: [
+    'required',
+    'email',
+  ],
+};
 
 export const SignUpForm = (props) => (
   <div>
@@ -24,5 +27,5 @@ export const SignUpForm = (props) => (
 
 export default reduxForm({
   form: 'signup',
-  validate: generateValidations()
+  validate: generateValidations(validationRules),
 })(SignUpForm);

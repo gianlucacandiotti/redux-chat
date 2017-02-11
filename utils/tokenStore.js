@@ -1,16 +1,16 @@
 const tokenStore = (token = '') => {
-  const _token = token;
+  let _token = token;
 
   return {
-    getToken() {
+    get() {
       return _token;
     },
-    setToken(token) {
+    set(token) {
       _token = token;
     },
   }
 };
 
-appToken = tokenStore();
+const appToken = tokenStore();
 
 export default appToken;

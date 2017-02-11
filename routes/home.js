@@ -7,7 +7,7 @@ import reducers from 'routers/Home/reducers';
 import axios from '../utils/axios';
 import pathsToRegex from '../utils/pathsToRegex';
 import prepComponent from  '../utils/prepComponent';
-import getToken from '../utils/getToken';
+import fetch from '../utils/fetch';
 
 const router = express.Router();
 
@@ -34,14 +34,26 @@ router.get(pathsToRegex(paths), function(req, res, next) {
 });
 
 router.post('/signup', (req, res, next) => {
-  console.log(req.body);
   const body = req.body;
 
-  getToken();
-
-  res.json({
-    message: 'Good Job!',
-  });
+  fetch.post('api/users', body)
+    .then((response) => {
+      res.json({
+        message: response.data,
+      });
+    })
+    .catch((error) => {
+      if (error.response) {
+        res.json({
+          data: error.response.data,
+          state: error.response.status,
+        })
+      } else {
+        res.json({
+          error: error.message,
+        })
+      }
+    });
 });
 
 export default {

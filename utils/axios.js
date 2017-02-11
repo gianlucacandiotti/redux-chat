@@ -1,7 +1,12 @@
 import axios from 'axios';
+require('dotenv').config();
 
-axios.defaults.baseURL = process.env.API_BASE_PATH;
-axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.headers.common['Accept'] = 'application/json';
+const axiosInstance = axios.create({
+  baseURL: process.env.API_BASE_PATH,
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+})
 
-export default axios;
+export default axiosInstance;
